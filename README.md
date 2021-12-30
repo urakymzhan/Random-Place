@@ -84,7 +84,7 @@ We need a button or link to initiate the action. I added a button to the `PageHe
 >
 > Now add the following to `RandomPlace.js`:
 
-> If you use react-router v5 use `useHistory` instead of `useValidate`
+- If you use react-router v5 use [useHistory](https://reactrouter.com/docs/en/v6/upgrading/v5) instead of `useValidate`
 
 ```JS
 import { useValidate } from 'react-router-dom'
