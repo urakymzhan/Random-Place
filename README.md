@@ -1,14 +1,12 @@
 ---
-
 Display a Random Place
-
 ---
 
 ## Show a random public place
 
 What if people wanted to find new places or just see something random? You could make a button to do this.
 
-To generate a random number with JavaScript you can use `Math.random()`. This method returns a random number between 0.0 and 1.0. It doesn't take any parameters or provide any other options. Typical output might look like this:  
+To generate a random number with JavaScript you can use `Math.random()`. This method returns a random number between 0.0 and 1.0. It doesn't take any parameters or provide any other options. Typical output might look like this:
 
 - 0.18688631567790337
 - 0.2833598281388573
@@ -33,8 +31,8 @@ Now you need to round the numbers off. JS supplies three choices for rounding:
 - `Math.floor()` - rounds down `Math.floor(3.9817693263500997) // 3`
 - `Math.ceil()` - rounds up `Math.floor(9.292188988843789) // 10`
 - `Math.round()` - rounds up/down
-    - `Math.floor(9.51050569288244) // 10`
-    - `Math.floor(9.292188988843789) // 9`
+- `Math.floor(9.51050569288244) // 10`
+- `Math.floor(9.292188988843789) // 9`
 
 The situation we are in provides us with an array of places and we need to select a random place from the array. The number of places in the array is provided by the length:
 
@@ -66,11 +64,11 @@ const id = Math.floor(randomNumber)
 // Router could work with this:
 // /details/:id
 ```
+
 **IMPORTANT NOTE**
 
 A quick aside, I'm regretting naming the the compoennt Title, when that component became the Header or PageHeader. This would a good place to rename these! <br>
-So lets rename Title component to be a PageHeader. Fix import errors. From now on i will refer Title as PageHeader. Update classNames to from **Title**  to **PageHeader** in `PageHeader.css` and `PageHeader.js`
-
+So lets rename Title component to be a PageHeader. Fix import errors. From now on i will refer Title as PageHeader. Update classNames to from **Title** to **PageHeader** in `PageHeader.css` and `PageHeader.js`
 
 ### React Router History
 
@@ -87,18 +85,20 @@ Now we need a button or link to initiate the action. I added a button to the `Pa
 > Next make a new file: `RandomPlace/RandomPlace.js`
 >
 > Now add the following to `RandomPlace.js`:
->
+
+> If you use react-router v5 use useHistory instead of useValidate
+
 ```JS
-import { useHistory } from 'react-router-dom'
+import { useValidate } from 'react-router-dom'
 import './RandomPlace.css';
 import data from '../../places-data.json'
 
 function RandomPlace() {
-    const history = useHistory()
+    const navigate = useNavigate();
   return (
         <button onClick={(e) => {
             const id = Math.floor(Math.random() * data.length)
-            history.push(`/details/${id}`)
+            navigate(`/details/${id}`)
         }}>Show me a random place</button>
   )
 }
@@ -108,7 +108,7 @@ export default RandomPlace
 
 This creates a component that outputs a single button.
 
-I imported `useHistory`. `useHistory` is a 'hook' that we can use with React Router to navigate to a new page. You'll call this method in your component function to get the history object.
+I imported `useNavigate`. `useNavigate` is a 'hook' that we can use with React Router to navigate to a new page.
 
 I also imported `places-data.json` as `data` since I'll need to know the length of the list.
 
@@ -134,11 +134,11 @@ function(a,b,c) {
 }
 ```
 
-Inside the onClick function the code gets a random number from 0 to the length - 1 as id. Then uses `history.push()` to navigate to the details page with the random id.  
+Inside the onClick function the code gets a random number from 0 to the length - 1 as id. Then uses `navigate()` to navigate to the details page with the random id.
 
 ```JS
 const id = Math.floor(Math.random() * data.length)
-history.push(`/details/${id}`)
+navigate(`/details/${id}`)
 ```
 
 ### Use the new RandomPlace component
@@ -153,13 +153,13 @@ Lets add a RandomPlace button to the PageHeader.
 > [action]
 >
 > Edit `PageHeader.js`. Add the following at the top and adjust the path to fit your arrangement of files.
->
+
 ```JS
 import RandomPlace from '../RandomPlace/RandomPlace'
 ```
->
+
 > Inside the function that defines the component find a place to add the new button component:
->
+
 ```JS
 function PageHeader() {
   return (
@@ -175,11 +175,12 @@ function PageHeader() {
   )
 }
 ```
+
 >
 
 I put the random place button after the list of NavLinks. You could put it anywhere.
 
-### Style the RandomPlace button 
+### Style the RandomPlace button
 
 Add a style sheet and style the RandomPlace button. You style the button. Follow these steps:
 
@@ -201,6 +202,7 @@ My Example:
     margin-left: 10px;
 }
 ```
+
 # Now Commit
 
 > [action]
@@ -210,4 +212,3 @@ $ git add .
 $ git commit -m 'add random places'
 $ git push
 ```
-
