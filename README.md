@@ -74,9 +74,7 @@ So lets rename Title component to be a PageHeader. Fix import errors. From now o
 
 Displaying a new random page requires we use React Router. Remember React Router manages the "Pages" in our Single Page Site.
 
-The method I chose was `history`. Using history will allow random searches to be tracked by the history and users will be able to use the back button in the browser to go back to the previous place they viewed.
-
-Now we need a button or link to initiate the action. I added a button to the `PageHeader` component. You could put this button anywhere. So our strategy will be to make a component that is just the button that loads a random place and then we can import that button where ever we might want to use it.
+We need a button or link to initiate the action. I added a button to the `PageHeader` component. You could put this button anywhere. So our strategy will be to make a component that is just the button that loads a random place and then we can import that button where ever we might want to use it.
 
 > [action]
 >
@@ -86,7 +84,7 @@ Now we need a button or link to initiate the action. I added a button to the `Pa
 >
 > Now add the following to `RandomPlace.js`:
 
-> If you use react-router v5 use useHistory instead of useValidate
+> If you use react-router v5 use `useHistory` instead of `useValidate`
 
 ```JS
 import { useValidate } from 'react-router-dom'
